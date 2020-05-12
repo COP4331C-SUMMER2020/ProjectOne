@@ -1,10 +1,10 @@
 # ProjectOne
-A Personal Contact Manager program. Each new user is able to sign up and, once logged in, the user can create new contacts with distinct attributes. 
-The user can also search for and delete contacts. 
-This project uses the LAMP stack. 
-This project also uses JSON to communicate between client and server. 
+<p>A Personal Contact Manager program. <br>
+Each new user is able to sign up and, once logged in, the user can create new contacts with distinct attributes. 
+The user can also search for and delete contacts.<p>
+This project uses the LAMP stack and JSON to communicate between client and server
 
-Front-End Team: Neo Cho, Zachary Sutrich
-API Team: Devon Anselmo, Harry O'Hagan
-Database: Carlos Lairet
-PM: Cameron Garretson
+<h5>Front-End Team:</h5> Neo Cho<br> Zachary Sutrich
+<h5>API Team:</h5> Devon Anselmo<br> Harry O'Hagan
+<h5>Database:</h5> Carlos Lairet
+<h5>Project Manager:</h5> Cameron Garretson
