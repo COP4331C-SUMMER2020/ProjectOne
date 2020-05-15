@@ -10,50 +10,52 @@
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-    <title>the face book</title>
+    <title>Group 11's Contact Manager</title>
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class = "row"> 
-        <div class="header"> 
-          <h1>the face book</h1> 
-        </div>
-          <div class="login">
-            <form action="" method=""> 
-              <input type="text" placeholder="Enter Email" name="email" required>
-              <input type="text" placeholder="Enter Password" name="password" required>
-              <button class="button"><a href="#" target="_blank"> Login</a></button>
-            </form>
-          </div>
+
+    <header>
+      <div class="logo">
+        <h1>the face book</h1>
       </div>
-    </div>
+    </header>
+
+    <!-- Login -->
+    <section class="login" id="home">
+      <form action="" method="">
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <input type="text" placeholder="Enter Password" name="password" required>
+        <button class="button"><a href="#" target="_blank"> Login</a></button>
+      </form>
+    </section>
 
     <div class="container-fluid">
-      <div class="row"> 
+      <div class="row">
         <div class="col-md column-1">
             <h2>Store your contacts.</h2>
-            <p>asdfasdfasdfasdfasdfasdfasdf <br> 
+            <p>asdfasdfasdfasdfasdfasdfasdf <br>
               asdfasdfasdfasdfasdfasdfasdf
             </p>
             <div class="signup">
               <h3> Create an account:</h3>
-              <form action="" method=""> 
+              <form action="" method="">
                 <!-- <label></label> -->
-                <input type="text" placeholder="First Name" name="fName" required>
-                <input type="text" placeholder="Last Name" name="lName" required>
                 <div class = "space"></div>
+                <input type="text" placeholder="First Name" name="fName" required>
+                <div class = "space"></div>
+                <input type="text" placeholder="Last Name" name="lName" required>
                 <div class = "space"></div>
                 <input type="text" placeholder="Enter Email" name="email" required>
                 <div class = "space"></div>
-                <input type="text" placeholder="Enter Password" name="password" required> 
+                <input type="text" placeholder="Enter Password" name="password" required>
                 <div class = "space"></div>
                 <button class="button"><a href="#" target="_blank"> Sign Up</a></button>
               </form>
             </div>
         </div>
         <div class="col-md column-2">
-          <img class ="image" src="./img/contact.png">
+          <img src="./img/contact.png" alt="" class="image__frontpage" >
         </div>
       </div>
     </div>

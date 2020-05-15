@@ -1,9 +1,69 @@
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+}
+
+/* Custom properties */
+:root
+{
+  --ff-primary: 'Oxygen', sans-serif;
+  --ff-secondary: 'Source Code Pro', monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #ffffff;
+  --clr-dark: #303030;
+  --clr-accent: #16e0bd;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+}
+
 html, body {
-    font-family: 'Oxygen', sans-serif;
+    font-family: var(--ff-primary);
     background: linear-gradient(120deg, #457fca, #5691c8);
 }
 
-.header {
+/* Typography */
+
+h1,
+h2,
+h3  {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+    color: var(--clr-light);
+    font-size: 2em;
+    font-weight: 700;
+}
+
+h2 {
+    color: var(--clr-light);
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+h3 {
+    color: var(--clr-light);
+    font-size: 2.0em;
+    font-weight: 600;
+}
+
+p {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+
+
+.logo {
     padding-top: 2vh;
     padding-left: 3vw;
 }
@@ -12,7 +72,7 @@ html, body {
     margin-top: 11vh;
     margin-left: 2vw;
     padding-top: 2vh;
-    padding-left: 2vw; 
+    padding-left: 2vw;
     min-height: 80vh;
 }
 
@@ -30,9 +90,9 @@ html, body {
 }
 
 .login {
-    margin-left: auto; 
-    margin-right: 5vw;
+    margin-left: 1400px;
     padding-top: 2vh;
+
 }
 
 .signup {
@@ -42,7 +102,7 @@ html, body {
     width: 23em;
 }
 
-.image {
+.image__frontpage {
     width: 20em;
 }
 
@@ -60,7 +120,7 @@ input {
     background-color: rgb(71, 206, 144);
     font-size: 0.8em;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--clr-light);
     padding: 0.8em;
     padding-left: 1.5em;
     padding-right: 1.5em;
@@ -69,32 +129,9 @@ input {
 }
 
 a:hover {
-    color: #ffffff;
+    color: var(--clr-light);
 }
 
 a:visited {
-    color: #ffffff;
-}
-
-h1 {
-    color: #ffffff;
-    font-size: 2em;
-    font-weight: 700;
-}
-
-h2 {
-    color: #ffffff;
-    font-size: 2.5em;
-    font-weight: 600; 
-}
-
-h3 {
-    color: #ffffff;
-    font-size: 2.0em;
-    font-weight: 600; 
-}
-
-p {
-    font-size: 1.5em;
-    font-weight: 100;
+    color: var(--clr-light);
 }
