@@ -3,10 +3,11 @@
 	$inData = getRequestInfo();
 
 	// Named after database fields for a new contact
-	$email = "";
-	$firstName = "";
-	$lastName = "";
-	$phoneNumber = "";
+	$email = $inData["email"];
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
+	$phoneNumber = $inData["phoneNumber"];
+	$userID = 0;
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -17,28 +18,31 @@
 	}
 
 	else 
-	{
-		// Check whether contact is in user's contact DB table before allowing them to create new contact
-		// TODO: $inData arguments may need to change, how to do partial match?
-		$sql = "SELECT firstName,lastName FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+	{	
+		$sql = "SELECT firstName,lastName FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "'";
 		$result = $conn->query($sql);
-		// If found, return the contact
 		if ($result->num_rows > 0)
 		{	
 			$row = $result->fetch_assoc();
-			$firstName = $row["firstName"];
-			$lastName = $row["lastName"];
-			$email = $row["email"];
-			$phoneNumber = $row["phoneNumber"];
-
-			returnWithInfo($firstName, $lastName, $email, $phoneNumber);
+			$userID = $row["userID"];
 		}
-		//otherwise return an error that none were found
-		else
+
+		$inData = getRequestInfo();
+		$email = $inData["email"];
+		$firstName = $inData["firstName"];
+		$lastName = $inData["lastName"];
+		$phoneNumber = $inData["phoneNumber"];
+
+		// TODO: variables may need to change
+		// Inserting newly registered user into Users DB table
+		$sql = "UPDATE Contacts SET firstname = '" . $firstName . "', lastName = '" . $lastName . "', phoneNumber = '" . $phoneNumber . "', email = '" . $email . "' WHERE userID = '". $userID ."'";
+
+		// Check if update was unsuccessful
+		if( $result = $conn->query($sql) != TRUE )
 		{
-			returnWithError("No contacts found.");
-
+			returnWithError( $conn->error );
 		}
+
 
 		$conn->close();
 	}
