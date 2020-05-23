@@ -21,7 +21,6 @@
 			$firstName = $row["firstName"];
 			$lastName = $row["lastName"];
 			$id = $row["ID"];
-
 			returnWithInfo($firstName, $lastName, $id );
 		}
 		else
@@ -50,7 +49,7 @@
 
 	function returnWithInfo( $firstName, $lastName, $id )
 	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		$retValue = '{"id":"' . $id . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 

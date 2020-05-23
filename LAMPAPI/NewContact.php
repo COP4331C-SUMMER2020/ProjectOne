@@ -35,10 +35,14 @@
 			$firstName = $inData["firstName"];
 			$lastName = $inData["lastName"];
 			$phoneNumber = $inData["phoneNumber"];
-
-			// TODO: variables may need to change
+			
+			//attempt to get current user's ID
+			//Current best guess
+			$currentID = $_SESSION['ID'];
+			
+			// TODO: does new contact's ID match user's ID?
 			// Inserting newly registered user into Users DB table
-			$sql = "INSERT into Contacts (firstName,lastName,phoneNumber,email) VALUES (" . $firstName . "," . $lastName . "," . $phoneNumber . "," . $email . ")";
+			$sql = "INSERT into Contacts (firstName,lastName,phoneNumber,email,userID) VALUES ('" . $firstName . "','" . $lastName . "','" . $phoneNumber . "','" . $email . "','" . $currentID . "')";
 
 			// Check if insertion was unsuccessful
 			if( $result = $conn->query($sql) != TRUE )

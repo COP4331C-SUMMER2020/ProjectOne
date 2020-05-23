@@ -20,7 +20,7 @@
 
 	else 
 	{	
-		$sql = "SELECT firstName,lastName FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "'";
+		$sql = "SELECT userID,email,phoneNumber,firstName,lastName FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{	

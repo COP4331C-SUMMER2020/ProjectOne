@@ -16,11 +16,11 @@
 		returnWithError( $conn->connect_error );
 	}
 
-	else 
+	else
 	{
 		// Check whether contact is in user's contact DB table before allowing them to create new contact
 		// TODO: $inData arguments may need to change, how to do partial match?
-		$sql = "SELECT firstName,lastName FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
 		$result = $conn->query($sql);
 		// If found, return the contact
 		if ($result->num_rows > 0)
@@ -30,7 +30,6 @@
 			$lastName = $row["lastName"];
 			$email = $row["email"];
 			$phoneNumber = $row["phoneNumber"];
-
 			returnWithInfo($firstName, $lastName, $email, $phoneNumber);
 		}
 		//otherwise return an error that none were found
@@ -43,7 +42,6 @@
 		$conn->close();
 	}
 
-	returnWithError("");
 
 	function getRequestInfo()
 	{
@@ -58,14 +56,12 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":' . $email . ',"phoneNumber":' . $phoneNumber . ',"error":"' . $err . '"}';
+		$retValue = '{"firstName": ,"lastName":"","email":"","phoneNumber":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
 	function returnWithInfo($firstName, $lastName, $email, $phoneNumber)
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":' . $email . ',"phoneNumber":' . $phoneNumber . '}';
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":"' . $email . '","phoneNumber":"' . $phoneNumber . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-
-?>
