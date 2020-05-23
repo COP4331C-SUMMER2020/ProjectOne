@@ -8,7 +8,7 @@
 	$lastName = "";
 	$password = "";
 
-	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
+	//$conn = new mysqli("localhost", "username for database", "domain password", "database name");
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");
 	if ($conn->connect_error)
 	{
@@ -37,7 +37,7 @@
 			// Inserting newly registered user into Users DB table
 			$sql = "INSERT into Users (firstName,lastName,username,password) VALUES (" . $firstName . "," . $lastName . "," . $login . "," . $password . ")";
 
-			// CHeck if insertion was successful
+			// CHeck if insertion was unsuccessful
 			if( $result = $conn->query($sql) != TRUE )
 			{
 				returnWithError( $conn->error );
