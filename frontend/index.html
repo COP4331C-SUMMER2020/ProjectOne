@@ -11,6 +11,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Group 11's Contact Manager</title>
+	
+	<script type="text/javascript" src="code.js"></script>
   </head>
 
   <body>
@@ -22,9 +24,9 @@
 
       <div class="login">
         <form action="" method="">
-          <input type="text" placeholder="Enter Email" name="email" required>
-          <input type="text" placeholder="Enter Password" name="password" required>
-          <button class="button"><a href="#" target="_blank"> Login</a></button>
+          <input type="text" id="loginName" placeholder="Enter Username" name="user" required>
+          <input type="text" id="loginPassword" placeholder="Enter Password" name="password" required>
+          <button class="button" onclick="doLogin"> Login</button>
         </form>
       </div>
 
@@ -45,14 +47,15 @@
               <form action="" method="">
                 <!-- <label></label> -->
                 <div class = "space"></div>
-                <input type="text" placeholder="First Name" name="fName" required>
-                <input type="text" placeholder="Last Name" name="lName" required>
+				<input type="text" id="regLogin" placeholder="Username" name="user" required>
+				<div class = "space"></div>
+                <input type="text" id="regFirstName" placeholder="First Name" name="fName" required>
+                <input type="text" id="regLastName" placeholder="Last Name" name="lName" required>
                 <div class = "space"></div>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" id="regPass" placeholder="Enter Password" name="password" required>
+				<input type="text" id="regConfirm" placeholder="Confirm Password" name="confirm" required>
                 <div class = "space"></div>
-                <input type="text" placeholder="Enter Password" name="password" required>
-                <div class = "space"></div>
-                <button class="button"><a href="#" target="_blank"> Sign Up</a></button>
+                <button class="button" onclick="doRegistration"> Sign Up</button>
               </form>
             </div>
         </div>

@@ -3,6 +3,7 @@
 	$inData = getRequestInfo();
 
 	// Named after database fields for a new contact
+	//This will be search page info
 	$email = $inData["email"];
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
@@ -23,10 +24,12 @@
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{	
+			//This line pulls all info from contact entry
 			$row = $result->fetch_assoc();
 			$userID = $row["userID"];
 		}
 
+		//This would now be on 'edit' page
 		$inData = getRequestInfo();
 		$email = $inData["email"];
 		$firstName = $inData["firstName"];
