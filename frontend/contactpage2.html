@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/contactStyle.css">
+
+    <script src="./js/contactpage.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Group 11's Contact Manager</title>
+  </head>
+    <body id="background">
+
+      <div class="top">
+        <div class="logo">
+          <h1>Contact Book</h1>
+        </div>
+        <div class="logout">
+            <button class="button" type = "submit" onclick="openForm()"><a href="#" target="_blank"></a>Add Contact</a></button>
+            <button class="button" type = "submit"><a href="#" target="_blank"></a>Logout</button>
+        </div>
+      </div>
+    
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md column-1"> 
+            <div class ="tables" style="overflow:auto;">
+              <h2>Contacts</h2>
+              <div class ="space2"></div>
+              <input type="text" id="myInput" onkeyup="" placeholder="Search a name">
+              <div class ="space"></div>
+              <div class ="space"></div>
+              <div class ="space"></div>
+
+              <table id="myTable">
+                <tr class="header">
+                  <th style="width:60%;">Name</th>
+                  <th style="width:40%;">Phone</th>
+                </tr>
+                <tr>
+                  <td>Alfreds Futterkiste</td>
+                  <td>Germany</td>
+                </tr>
+                <tr>
+                  <td>Berglunds snabbkop</td>
+                  <td>Sweden</td>
+                </tr>
+                <tr>
+                  <td>Island Trading</td>
+                  <td>UK</td>
+                </tr>
+                <tr>
+                  <td>Koniglich Essen</td>
+                  <td>Germany</td>
+                </tr>
+                <tr>
+                  <td>Koniglich Essen</td>
+                  <td>Germany</td>
+                </tr>
+                   <tr>
+                  <td>Koniglich Essen</td>
+                  <td>Germany</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-md column-2">
+            <div class="form1" id="myForm">
+              <form action="" method="">
+                <h2>Add a contact</h2>
+                <div class = "space1"></div>
+                <input type="text" placeholder="First Name" name="fName" required>
+                <input type="text" placeholder="Last Name" name="lName" required>
+                <div class = "space"></div>
+                <input type="text" placeholder="Phone" name="phone">
+                <div class = "space"></div>
+                <input type="password" placeholder="Email" name="email">
+                <div class = "space"></div>
+                <input type="text" placeholder="Address" name="adress">
+                <div class = "space"></div>
+                <button class="button" onclick=""> Add </button>
+                <button class="button" onclick="closeForm()"> Cancel </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-md column-2">
+            <div class="user" id="">
+                <h2>USER NAME</h2>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </body>
+</html>
