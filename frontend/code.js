@@ -37,6 +37,11 @@ function doRegistration()
 			var jsonObject = JSON.parse( xhr.responseText );
 
 			userId = jsonObject.id;
+		}
+		catch(err)
+		{
+			document.getElementById("loginResult").innerHTML = err.message;
+		}
 	}
 }
 
