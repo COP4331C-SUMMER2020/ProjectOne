@@ -1,0 +1,180 @@
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+}
+
+/* Custom properties */
+:root
+{
+  --ff-primary: 'Oxygen', sans-serif;
+  --ff-secondary: 'Source Code Pro', monospace;
+
+  --fw-reg: 300;
+  --fw-bold: 900;
+
+  --clr-light: #ffffff;
+  --clr-dark: #303030;
+  --clr-accent: #16e0bd;
+
+  --fs-h1: 3rem;
+  --fs-h2: 2.25rem;
+  --fs-h3: 1.25rem;
+  --fs-body: 1rem;
+}
+
+html, body {
+    font-family: var(--ff-primary);
+    height: 100%;
+    background: rgb(45,45,91);
+}
+
+#background {
+    margin: 0;
+    background: url('/frontend/img/landingimagepurple.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-size: 100% 25em;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3  {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 {
+    color: var(--clr-light);
+    font-size: 2em;
+    font-weight: 700;
+}
+
+h2 {
+    color: var(--clr-light);
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+h3 {
+    color: var(--clr-light);
+    font-size: 2.0em;
+    font-weight: 600;
+}
+
+p {
+    color: var(--clr-light);
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+/* Header */
+
+.top {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.logo {
+
+    float: left;
+    padding-top: 2vh;
+    padding-left: 3vw;
+}
+
+.login {
+    padding-top: 2vh;
+    padding-right: 2em;
+    float: right;
+}
+
+.column-1{
+    margin-top: 11vh;
+    margin-left: 2vw;
+    padding-top: 11vh;
+    padding-left: 2vw;
+    min-height: 80vh;
+    text-align: center;
+}
+
+.column-2 {
+    margin-top: 6em;
+    padding-left: 10vw;
+}
+
+.space {
+    padding-top: 0.4vh;
+}
+
+.space1 {
+    padding-top: 10vh;
+}
+
+.signup {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    height: 11em;
+    width: 22em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.1vw;
+    padding-right: 0.1vw;
+}
+
+.image__frontpage {
+    max-width: 400px;
+    width: auto;
+
+}
+
+input {
+    font-size: 0.8em;
+    font-weight: 600;
+    padding: 0.8em;
+    padding-left: 1.0em;
+    padding-right: 1.5em;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.input1 {
+    width: 100%;
+}
+
+.button {
+    background-color: rgb(71, 206, 144);
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--clr-light);
+    padding: 0.8em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border: 1px;
+    border-radius: 5px;
+}
+
+.button1 {
+    background-color: rgb(71, 206, 144);
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--clr-light);
+    padding: 0.8em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border: 1px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+a:hover {
+    color: var(--clr-light);
+}
+
+a:visited {
+    color: var(--clr-light);
+}

@@ -11,6 +11,8 @@ function doRegistration()
 	firstName = "";
 	lastName = "";
 
+console.log('Registering...');
+
 	var regLogin = document.getElementById("regLogin").value;
 	var regFirstName = document.getElementById("regFirstName").value;
 	var regLastName = document.getElementById("regLastName").value;
@@ -37,6 +39,11 @@ function doRegistration()
 			var jsonObject = JSON.parse( xhr.responseText );
 
 			userId = jsonObject.id;
+		}
+		catch(err)
+		{
+			document.getElementById("loginResult").innerHTML = err.message;
+		}
 	}
 }
 
@@ -45,6 +52,8 @@ function doLogin()
 	userId = 0;
 	firstName = "";
 	lastName = "";
+
+	console.log('Logging in...');
 
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
@@ -78,7 +87,7 @@ function doLogin()
 
 		//saveCookie();
 
-		window.location.href = "color.html";
+		window.location.href = "contactpage.html";
 	}
 	catch(err)
 	{
