@@ -11,6 +11,8 @@ function doRegistration()
 	firstName = "";
 	lastName = "";
 
+console.log('Registering...');
+
 	var regLogin = document.getElementById("regLogin").value;
 	var regFirstName = document.getElementById("regFirstName").value;
 	var regLastName = document.getElementById("regLastName").value;
@@ -51,6 +53,8 @@ function doLogin()
 	firstName = "";
 	lastName = "";
 
+	console.log('Logging in...');
+
 	var login = document.getElementById("loginName").value;
 	var password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
@@ -83,7 +87,7 @@ function doLogin()
 
 		//saveCookie();
 
-		window.location.href = "color.html";
+		window.location.href = "contactpage.html";
 	}
 	catch(err)
 	{
