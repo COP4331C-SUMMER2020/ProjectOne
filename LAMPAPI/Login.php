@@ -13,7 +13,8 @@
 	}
 	else
 	{
-		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+		$hashedPassword = password_hash( $inData["password"] , PASSWORD_DEFAULT);
+		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password = '" . $hashedPassword . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -49,6 +50,7 @@
 
 	function returnWithInfo( $firstName, $lastName, $id )
 	{
+
 		$retValue = '{"id":"' . $id . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}

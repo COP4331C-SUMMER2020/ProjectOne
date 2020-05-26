@@ -17,9 +17,10 @@
 	
 	else 
 	{
+		$hashedPassword = password_hash( $inData["password"] , PASSWORD_DEFAULT);
 		// Check whether User is in User DB table before allowing them to register
 		// TODO: $inData arguements may need to change
-		$sql = "SELECT login,password,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "' and firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+		$sql = "SELECT login,password,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $hashedPassword . "' and firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{	
@@ -31,11 +32,10 @@
 			$login = $inData["login"];
 			$firstName = $inData["firstName"];
 			$lastName = $inData["lastName"];
-			$password = $inData["password"];
 
 			// TODO: variables may need to change
 			// Inserting newly registered user into Users DB table
-			$sql = "INSERT into Users (firstName,lastName,login,password) VALUES ('" . $firstName . "','" . $lastName . "','" . $login . "','" . $password . "')";
+			$sql = "INSERT into Users (firstName,lastName,login,password) VALUES ('" . $firstName . "','" . $lastName . "','" . $login . "','" . $hashedPassword . "')";
 
 			// CHeck if insertion was unsuccessful
 			if( $result = $conn->query($sql) != TRUE )
