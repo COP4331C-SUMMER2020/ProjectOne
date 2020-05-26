@@ -11,7 +11,7 @@ function doRegistration()
 	firstName = "";
 	lastName = "";
 
-console.log('Registering...');
+	console.log('Registering...');
 
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
@@ -21,7 +21,7 @@ console.log('Registering...');
 
 	if (rPassword != rConfirm)
 	{
-		document.getElementById("result").innerHTML = "passwords do not match";
+		document.getElementById("result2").innerHTML = "passwords do not match";
 	}
 	else
 	{
@@ -37,18 +37,19 @@ console.log('Registering...');
 			{
 				if (this.readyState == 4 && this.status == 200)
 				{
-					document.getElementById("result").innerHTML = "You are now signed up!";
+					document.getElementById("result2").innerHTML = "You are now signed up!";
 				}
 			}
 			console.log(jsonPayload);
 			xhr.send(jsonPayload);
 			
+			var jsonObject = JSON.parse( xhr.responseText );
 			saveCookie();
 			window.location.replace("https://elevenbrethren.com/contactpage.html");
 		}
 		catch(err)
 		{
-			document.getElementById("result").innerHTML = err.message;
+			document.getElementById("result2").innerHTML = err.message;
 		}
 	}
 }
@@ -65,7 +66,7 @@ function doLogin()
 	var lPassword = document.getElementById("passwordLogin").value;
 //	var hash = md5( password );
 
-	document.getElementById("result").innerHTML = "";
+	document.getElementById("result1").innerHTML = "";
 
 	var jsonPayload = '{"login" : "' + username + '", "password" : "' + lPassword + '"}';
 	var url = urlBase + '/Login.' + extension;
@@ -83,7 +84,7 @@ function doLogin()
 
 		if( userId < 1 )
 		{
-			document.getElementById("result").innerHTML = "User/Password combination incorrect";
+			document.getElementById("result1").innerHTML = "User/Password combination incorrect";
 			return;
 		}
 
@@ -96,7 +97,7 @@ function doLogin()
 	}
 	catch(err)
 	{
-		document.getElementById("result").innerHTML = err.message;
+		document.getElementById("result1").innerHTML = err.message;
 	}
 
 }
