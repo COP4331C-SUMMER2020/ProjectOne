@@ -71,7 +71,7 @@ p {
 
 #background {
     margin: 0;
-    background: url('/frontend/img/searchpageimgpurple.png');
+    background: url('/img/searchpageimgpurple.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
