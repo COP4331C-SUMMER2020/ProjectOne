@@ -29,7 +29,7 @@ function doRegistration()
 		var url = urlBase + '/Register.' + extension;
 
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", url, true);
+		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 		try
 		{
@@ -43,9 +43,9 @@ function doRegistration()
 			console.log(jsonPayload);
 			xhr.send(jsonPayload);
 			
-			var jsonObject = JSON.parse( xhr.responseText );
+			//var jsonObject = JSON.parse( xhr.responseText );
 			saveCookie();
-			window.location.replace("https://elevenbrethren.com/contactpage.html");
+			self.location = "contactpage.html";
 		}
 		catch(err)
 		{
@@ -72,7 +72,7 @@ function doLogin()
 	var url = urlBase + '/Login.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
@@ -93,7 +93,7 @@ function doLogin()
 
 		saveCookie();
 
-		window.location.replace("https://elevenbrethren.com/contactpage.html");
+		self.location = "contactpage.html";
 	}
 	catch(err)
 	{
