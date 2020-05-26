@@ -32,7 +32,7 @@ html, body {
 
 #background {
     margin: 0;
-    background: url('/frontend/img/landingimagepurple.png');
+    background: url('/img/landingimagepurple.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: bottom;
@@ -93,6 +93,10 @@ p {
     float: right;
 }
 
+.headerLogin {
+    font-size: 1em;
+}
+
 .column-1{
     margin-top: 11vh;
     margin-left: 2vw;
@@ -115,10 +119,14 @@ p {
     padding-top: 10vh;
 }
 
+.space2 {
+    padding-top: 1vh;
+}
+
 .signup {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 11em;
+    height: 17em;
     width: 22em;
     margin-left: auto;
     margin-right: auto;

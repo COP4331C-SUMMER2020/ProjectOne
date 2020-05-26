@@ -25,9 +25,10 @@
 
       <div class="login">
         <form action="" method="">
-          <input type="text" placeholder="Enter Email" name="email" required>
-          <input type="password" placeholder="Enter Password" name="password" required>
+          <input type="text" placeholder="Enter Username" name="email" id="usernameLogin" required>
+          <input type="password" placeholder="Enter Password" name="password" id="passwordLogin" required>
           <button class="button" onclick="doLogin();" type="submit"> Login </button>
+          <p id="result" class="headerLogin"> </p>
         </form>
       </div>
     </div>
@@ -43,11 +44,15 @@
             <div class="signup">
               <div class = "space"></div>
               <form action="" method="">
-                <input type="text" placeholder="Username" name="username" class="input1" required>
+                <input type="text" placeholder="First Name" name="fname" class="input1" id="firstName" required>
                 <div class = "space"></div>
-                <input type="text" placeholder="Enter Password" name="password" class="input1" required>
+                <input type="text" placeholder="Last Name" name="lname" class="input1" id="lastName" required>
                 <div class = "space"></div>
-                <input type="password" placeholder="Confirm Password" name="confrimPassword" class="input1" required>
+                <input type="text" placeholder="Username" name="username" class="input1" id="username" required>
+                <div class = "space"></div>
+                <input type="password" placeholder="Enter Password" name="password" class="input1" id="password" required>
+                <div class = "space"></div>
+                <input type="password" placeholder="Confirm Password" name="confrimPassword" class="input1" id="confirm" required>
                 <div class = "space"></div>
                 <button class="button1" onclick="doRegistration();" type = "submit">Register</button>
               </form>
