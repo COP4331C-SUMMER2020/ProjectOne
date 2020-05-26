@@ -3,10 +3,11 @@
 	$inData = getRequestInfo();
 	
 	// Named after database fields
-	$login = "";
+	$login = $inData["login"];
 	$firstName = "";
 	$lastName = "";
-	$password = "";
+	$plainPassword = $inData["password"];
+	$hashedPassword = "";
 
 	//$conn = new mysqli("localhost", "username for database", "domain password", "database name");
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");
@@ -17,10 +18,9 @@
 	
 	else 
 	{
-		$hashedPassword = password_hash( $inData["password"] , PASSWORD_DEFAULT);
+		$hashedPassword = password_hash( $plainPassword , PASSWORD_DEFAULT);
 		// Check whether User is in User DB table before allowing them to register
-		// TODO: $inData arguements may need to change
-		$sql = "SELECT login,password,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $hashedPassword . "' and firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+		$sql = "SELECT login,password,firstName,lastName FROM Users where Login='" . $login . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{	

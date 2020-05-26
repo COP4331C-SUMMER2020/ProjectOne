@@ -5,6 +5,8 @@
 	$id = 0;
 	$firstName = "";
 	$lastName = "";
+	$login = $inData["login"];
+	$password = $inData["password"];
 
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");
 	if ($conn->connect_error)
@@ -13,8 +15,8 @@
 	}
 	else
 	{
-		$hashedPassword = password_hash( $inData["password"] , PASSWORD_DEFAULT);
-		$sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password = '" . $hashedPassword . "'";
+		//Does user exist in database
+		$sql = "SELECT ID,firstName,lastName,password FROM Users where Login='" . $login . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -22,11 +24,18 @@
 			$firstName = $row["firstName"];
 			$lastName = $row["lastName"];
 			$id = $row["ID"];
-			returnWithInfo($firstName, $lastName, $id );
+			$hashedPassword = $row["password"];
 		}
 		else
 		{
 			returnWithError( "No Records Found" );
+		}
+		//check their password versus it's hash
+		if (password_verify($password, $hashedPassword))
+			returnWithInfo($firstName, $lastName, $id );
+		else
+		{
+			returnWithError( "Passwords don't match" );
 		}
 		$conn->close();
 	}
