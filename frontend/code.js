@@ -13,20 +13,20 @@ function doRegistration()
 
 console.log('Registering...');
 
-	var regLogin = document.getElementById("regLogin").value;
-	var regFirstName = document.getElementById("regFirstName").value;
-	var regLastName = document.getElementById("regLastName").value;
-	var regPassword = document.getElementById("regPass").value;
-	var regConfirm = document.getElementById("regConfirm").value;
+	firstName = document.getElementById("firstName").value;
+	lastName = document.getElementById("lastName").value;
+	var username = document.getElementById("username").value;
+	var rPassword = document.getElementById("password").value;
+	var rConfirm = document.getElementById("confrimPassword").value;
 
-	if (regPassword != regConfirm)
+	if (password != confirm)
 	{
-		document.getElementById("registerResult").innerHTML = "passwords do not match";
+		document.getElementById("result").innerHTML = "passwords do not match";
 	}
 	else
 	{
-		var jsonPayload = '{"login" : "' + regLogin + '", "password" : "' + regPassword + '", "firstName" : "' + regFirstName
-		+ '", "lastName" : "' + regLastName + '"}';
+		var jsonPayload = '{"login" : "' + username + '", "password" : "' + rPassword + '", "firstName" : "' + firstName
+		+ '", "lastName" : "' + lastName + '"}';
 		var url = urlBase + '/Register.' + extension;
 
 		var xhr = new XMLHttpRequest();
@@ -34,15 +34,17 @@ console.log('Registering...');
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 		try
 		{
+			console.log(jsonPayLoad);
 			xhr.send(jsonPayload);
 
 			var jsonObject = JSON.parse( xhr.responseText );
-
+			saveCookie();
 			userId = jsonObject.id;
+			window.location.href = "contactpage.html";
 		}
 		catch(err)
 		{
-			document.getElementById("loginResult").innerHTML = err.message;
+			document.getElementById("result").innerHTML = err.message;
 		}
 	}
 }
@@ -55,8 +57,8 @@ function doLogin()
 
 	console.log('Logging in...');
 
-	var login = document.getElementById("loginName").value;
-	var password = document.getElementById("loginPassword").value;
+	var username = document.getElementById("usernameLogin").value;
+	var lPassword = document.getElementById("passwordLogin").value;
 //	var hash = md5( password );
 
 	document.getElementById("loginResult").innerHTML = "";
@@ -85,7 +87,7 @@ function doLogin()
 		firstName = jsonObject.firstName;
 		lastName = jsonObject.lastName;
 
-		//saveCookie();
+		saveCookie();
 
 		window.location.href = "contactpage.html";
 	}
@@ -94,4 +96,54 @@ function doLogin()
 		document.getElementById("loginResult").innerHTML = err.message;
 	}
 
+}
+
+function saveCookie()
+{
+	var minutes = 20;
+	var date = new Date();
+	date.setTime(date.getTime()+(minutes*60*1000));
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+}
+
+function readCookie()
+{
+	userId = -1;
+	var data = document.cookie;
+	var splits = data.split(",");
+	for(var i = 0; i < splits.length; i++)
+	{
+		var thisOne = splits[i].trim();
+		var tokens = thisOne.split("=");
+		if( tokens[0] == "firstName" )
+		{
+			firstName = tokens[1];
+		}
+		else if( tokens[0] == "lastName" )
+		{
+			lastName = tokens[1];
+		}
+		else if( tokens[0] == "userId" )
+		{
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+
+	if( userId < 0 )
+	{
+		window.location.href = "index.html";
+	}
+	else
+	{
+		document.getElementById("result").innerHTML = "Logged in as " + firstName + " " + lastName;
+	}
+}
+
+function doLogout()
+{
+	userId = 0;
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= , lastName =, userId = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
 }
