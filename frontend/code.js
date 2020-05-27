@@ -1,5 +1,5 @@
 //some nice variables for modularity
-var urlBase = 'http://elevenbrethren.com/LAMPAPI';
+var urlBase = '//elevenbrethren.com/LAMPAPI';
 var extension = 'php';
 
 var userId = 0;
