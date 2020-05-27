@@ -168,3 +168,41 @@ function doLogout()
 	document.cookie = "firstName= , lastName =, userId = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 	window.location.href = "index.html";
 }
+
+// Add new contact
+function addContact()
+{
+	var firstName = document.getElementById("fName").value;
+	var lastName = document.getElementById("lName").value;
+	var phone = document.getElementById("phone").value;
+	var email = document.getElementById("email").value;
+
+	console.log("fname, lastname, phone, email" + fName + " " + lastName + " " + phone + " " + email)
+
+	document.getElementById("addResult").innerHTML = "";
+		
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
+	console.log(jsonPayload)
+	var url = urlBase + '/NewContact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("addResult").innerHTML = "Contact has been added";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("addResult").innerHTML = err.message;
+	}
+	
+}

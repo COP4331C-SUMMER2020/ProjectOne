@@ -51,6 +51,7 @@ h2 {
 }
 
 p {
+    color: var(--clr-light);
     font-size: 1.5em;
     font-weight: 100;
 }
@@ -82,6 +83,10 @@ p {
     padding-top: 2vh;
     padding-right: 2em;
     float: right;
+}
+
+.addSection {
+    font-size: 1em;
 }
 
 .form1 {
