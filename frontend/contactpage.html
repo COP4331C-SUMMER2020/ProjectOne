@@ -36,11 +36,16 @@
             <div class ="tables" style="overflow:auto;">
               <h2>Contacts</h2>
               <div class ="space2"></div>
-              <input type="text" id="myInput" onkeyup="" placeholder="Search a name">
+              <input type="text" id="searchInput" placeholder="Search a name">
+              <button type="button" class="button" onclick="searchContact();" type="submit"> Search </button>
               <div class ="space"></div>
               <div class ="space"></div>
               <div class ="space"></div>
 
+              <!-- Temporary outputs for testing, will change this -->
+              <p id="resultLOG"> </p> 
+              <p id="searchResult"> </p> 
+<!-- 
               <table id="myTable">
                 <tr class="header">
                   <th style="width:60%;">Name</th>
@@ -70,7 +75,7 @@
                   <td>Koniglich Essen</td>
                   <td>Germany</td>
                 </tr>
-              </table>
+              </table> -->
             </div>
           </div>
 

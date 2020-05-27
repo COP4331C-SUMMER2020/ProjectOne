@@ -206,3 +206,64 @@ function addContact()
 	}
 	
 }
+
+
+// Search for contact
+function searchContact()
+{
+	// var searchInput = document.getElementById("searchInput").value;
+	console.log(searchInput)
+	
+	// Testing search, will implement search text boxes
+	var firstName = "joe"
+	var lastName = "mama"
+	var phone = ""
+	var email = ""
+
+
+	document.getElementById("searchResult").innerHTML = "";
+	
+	var searchList = "";
+	
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
+	console.log(jsonPayload)
+	var url = urlBase + '/SearchContact.' + extension;
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("resultLOG").innerHTML = "User(s) have been retrieved";
+				// XHR.responseText is giving off an unexpected token error. is that front end or php side?
+				console.log(xhr.responseText)
+
+				var jsonObject = JSON.parse( xhr.responseText );
+				console.log(jsonObject)
+
+				
+				// for( var i=0; i<jsonObject.results.length; i++ )
+				// {
+				// 	searchList += jsonObject.results[i];
+				// 	if( i < jsonObject.results.length - 1 )
+				// 	{
+				// 		searchList += "<br />\r\n";
+				// 	}
+				// }
+				// document.getElementById("searchResult").innerHTML = searchList;
+
+				// document.getElementsByTagName("p")[0].innerHTML = searchList;
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("resultLOG").innerHTML = err.message;
+	}
+	
+}
