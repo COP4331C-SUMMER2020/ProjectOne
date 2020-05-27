@@ -1,3 +1,4 @@
+//some nice variables for modularity
 var urlBase = 'http://elevenbrethren.com/LAMPAPI';
 var extension = 'php';
 
@@ -7,32 +8,39 @@ var lastName = "";
 
 function doRegistration()
 {
+	//always gotta zero these out
 	userId = 0;
 	firstName = "";
 	lastName = "";
 
-	console.log('Registering...');
-
+	//grabbing some variables from user input
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
 	var username = document.getElementById("username").value;
 	var rPassword = document.getElementById("password").value;
 	var rConfirm = document.getElementById("confirm").value;
-
+	
+	//clearing out the error display
+	document.getElementById("result2").innerHTML = "";
+	
+	//verifying the "confirm password" field matches the "password" field
 	if (rPassword != rConfirm)
 	{
 		document.getElementById("result2").innerHTML = "passwords do not match";
 	}
 	else
 	{
+		//constructing the payload
 		var jsonPayload = '{"login" : "' + username + '", "password" : "' + rPassword + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
 		var url = urlBase + '/Register.' + extension;
-
+		
+		//creates a new connection to the database through the php file
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 		try
 		{
+			//creating an event listener for if the registration succeeds
 			xhr.onreadystatechange = function()
 			{
 				if (this.readyState == 4 && this.status == 200)
@@ -40,10 +48,11 @@ function doRegistration()
 					document.getElementById("result2").innerHTML = "You are now signed up!";
 				}
 			}
+			//logs the payload for debugging, then sends it
 			console.log(jsonPayload);
 			xhr.send(jsonPayload);
 			
-			//var jsonObject = JSON.parse( xhr.responseText );
+			//creates a login cookie and redirects to the contact page
 			saveCookie();
 			self.location = "contactpage.html";
 		}
@@ -56,32 +65,37 @@ function doRegistration()
 
 function doLogin()
 {
+	//always gotta zero these out
 	userId = 0;
 	firstName = "";
 	lastName = "";
 
-	console.log('Logging in...');
-
+	//grabbing some variables from user input
 	var username = document.getElementById("usernameLogin").value;
 	var lPassword = document.getElementById("passwordLogin").value;
-//	var hash = md5( password );
-
+	
+	//clearing out the error display
 	document.getElementById("result1").innerHTML = "";
 
+	//constructing the payload
 	var jsonPayload = '{"login" : "' + username + '", "password" : "' + lPassword + '"}';
 	var url = urlBase + '/Login.' + extension;
 
+	//creates a new connection to the database through the php file
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
+		//sends the payload
 		xhr.send(jsonPayload);
-
+		
+		//reads the server response, which includes information about the user
 		var jsonObject = JSON.parse( xhr.responseText );
 
 		userId = jsonObject.id;
-
+		
+		//if the userId is less than one, the login did not succeed
 		if( userId < 1 )
 		{
 			document.getElementById("result1").innerHTML = "User/Password combination incorrect";
@@ -90,9 +104,9 @@ function doLogin()
 
 		firstName = jsonObject.firstName;
 		lastName = jsonObject.lastName;
-
+		
+		//saves the cookie and redirects to the contact page
 		saveCookie();
-
 		self.location = "contactpage.html";
 	}
 	catch(err)
@@ -102,6 +116,7 @@ function doLogin()
 
 }
 
+//creates a cookie which includes date of access and the user account information
 function saveCookie()
 {
 	var minutes = 20;
@@ -110,6 +125,7 @@ function saveCookie()
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
+//parses the cookie for user information
 function readCookie()
 {
 	userId = -1;
@@ -143,6 +159,7 @@ function readCookie()
 	}
 }
 
+//logs out in theory
 function doLogout()
 {
 	userId = 0;
