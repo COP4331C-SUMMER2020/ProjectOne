@@ -103,19 +103,16 @@ p {
 }
 
 .user {
+    display: none;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 25em;
+    height: 18em;
     width: 25em;
+    margin-left: auto;
+    margin-right: auto;
     padding-top: 1.5vh;
     padding-left: 1vw;
     padding-right: 1vw;
-
-
-    margin-top: 3vh;
-    margin-bottom: auto;
-    margin-right: 8vw;
-    margin-left: auto;
 }
 
 .column-1{
