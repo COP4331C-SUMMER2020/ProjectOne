@@ -38,6 +38,7 @@ html, body {
     background-attachment: fixed;
     background-position: bottom;
     background-size: 100% 65%;
+    object-fit: scale-down;
 }
 
 /* Typography */
