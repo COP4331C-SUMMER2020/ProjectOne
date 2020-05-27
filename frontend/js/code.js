@@ -53,8 +53,8 @@ function doRegistration()
 			xhr.send(jsonPayload);
 			
 			//creates a login cookie and redirects to the contact page
-			saveCookie();
-			self.location = "contactpage.html";
+			// saveCookie();
+			// self.location = "contactpage.html";
 		}
 		catch(err)
 		{
@@ -159,7 +159,7 @@ function readCookie()
 	}
 }
 
-//logs out in theory
+// Logout 
 function doLogout()
 {
 	userId = 0;
