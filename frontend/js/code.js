@@ -177,16 +177,20 @@ function addContact()
 	var phone = document.getElementById("phone").value;
 	var email = document.getElementById("email").value;
 
-	console.log("fname, lastname, phone, email" + fName + " " + lastName + " " + phone + " " + email)
+	if(firstName === "" && lastName === "" && phone === "" && email === "")
+	{
+		return false; 
+	}
 
-	document.getElementById("addResult").innerHTML = "";
+	console.log("fname, lastname, phone, email" + fName + " " + lastName + " " + phone + " " + email)
 		
 	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
 	console.log(jsonPayload)
+
 	var url = urlBase + '/NewContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false);
+	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try
@@ -195,13 +199,25 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
+				document.getElementById("fName").value = "";
+				document.getElementById("lName").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("email").value = "";
+
 				document.getElementById("addResult").innerHTML = "Contact has been added";
+
 			}
-		};
+		}
+
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
+		document.getElementById("fName").value = "";
+		document.getElementById("lName").value = "";
+		document.getElementById("phone").value = "";
+		document.getElementById("email").value = "";
+
 		document.getElementById("addResult").innerHTML = err.message;
 	}
 	
@@ -254,11 +270,11 @@ function searchContact()
 				// 		searchList += "<br />\r\n";
 				// 	}
 				// }
-				// document.getElementById("searchResult").innerHTML = searchList;
+				document.getElementById("searchResult").innerHTML = searchList;
 
 				// document.getElementsByTagName("p")[0].innerHTML = searchList;
 			}
-		};
+		}
 		xhr.send(jsonPayload);
 	}
 	catch(err)
