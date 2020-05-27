@@ -32,11 +32,11 @@ html, body {
 
 #background {
     margin: 0;
-    background: url('/img/landingimagepurple.png');
+    background: url('/frontend/img/landingimagepurple.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: bottom;
-    background-size: 100% 25em;
+    background-size: 100% 65%;
 }
 
 /* Typography */
@@ -104,7 +104,7 @@ p {
 .column-1{
     margin-top: 11vh;
     margin-left: 2vw;
-    padding-top: 11vh;
+    padding-top: 2.5vh;
     padding-left: 2vw;
     min-height: 80vh;
     text-align: center;
