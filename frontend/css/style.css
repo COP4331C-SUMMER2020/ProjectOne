@@ -32,7 +32,8 @@ html, body {
 
 #background {
     margin: 0;
-    background: url('./img/landingimagepurple.png');
+    /* background: url('/img/landingimagepurple.png'); */
+    background: url('/frontend/img/landingimagepurple.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: bottom;
