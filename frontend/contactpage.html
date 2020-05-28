@@ -11,6 +11,12 @@
 
     <script src="./js/contactpage.js"></script>
     <script src="./js/code.js"></script>
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function()
+	{
+		readCookie();
+	}, false);
+	</script>
 
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Group 11's Contact Manager</title>
@@ -24,7 +30,7 @@
 
         <!-- Logout & Add User button -->
         <div class="logout">
-            <button class="button" onclick="openForm()">Add Contact</button>
+            <!-- <button class="button" onclick="openForm()">Add Contact</button> -->
             <button type="button" class="button" onclick="doLogout();" type="submit"> Logout</button>
         </div>
       </div>
@@ -45,15 +51,19 @@
               <!-- Temporary outputs for testing, will change this -->
               <p id="resultLOG"> </p> 
               <p id="searchResult"> </p> 
-<!-- 
+
               <table id="myTable">
                 <tr class="header">
-                  <th style="width:60%;">Name</th>
-                  <th style="width:40%;">Phone</th>
+                  <th style="width:25%;">First Name</th>
+                  <th style="width:25%;">Last Name</th>
+                  <th style="width:30%;">Email</th>
+                  <th style="width:30%;">Phone</th>
                 </tr>
                 <tr>
                   <td>Alfreds Futterkiste</td>
                   <td>Germany</td>
+                  <td></td>
+                  <td></td>
                 </tr>
                 <tr>
                   <td>Berglunds snabbkop</td>
@@ -75,12 +85,20 @@
                   <td>Koniglich Essen</td>
                   <td>Germany</td>
                 </tr>
-              </table> -->
+              </table>
             </div>
           </div>
 
           <!-- Add User Section -->
           <div class="col-md column-2">
+            <!-- User Info -->
+            <div class="user" id="userInfo">
+              <h2>USER NAME</h2>
+            </div>
+            <div class = "space"></div>
+            <div class = "space"></div>
+            <div class = "space"></div>
+            <!-- Add a contact -->
             <div class="form1" id="myForm">
               <form action="" method="">
                 <h2>Add a contact</h2>
@@ -93,18 +111,11 @@
                 <input id ="email" type="text" placeholder="Email" name="email">
                 <div class = "space"></div>
                 <p id="addResult" class="addSection"> </p>
-                <div class = "space"></div>
                 <button type="button" class="button" onclick="addContact();" type="submit"> Add </button>
                 <button class="button" onclick="closeForm()"> Cancel </button>
               </form>
             </div>
-            <!-- User Info -->
-            <div class="user" id="userInfo">
-              <h2>USER NAME</h2>
-            </div>
           </div>
-
-
         </div>
       </div>
     </body>

@@ -90,10 +90,9 @@ p {
 }
 
 .form1 {
-    display: none;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 20em;
+    height: 17em;
     width: 25em;
     margin-left: auto;
     margin-right: auto;
@@ -103,7 +102,6 @@ p {
 }
 
 .user {
-    display: none;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     height: 18em;
@@ -116,19 +114,23 @@ p {
 }
 
 .column-1{
-    margin-top: 5vh;
+    margin-top: 2vh;
     margin-left: 2vw;
     margin-bottom: 7vh;
     padding-top: 2vh;
     padding-left: 2vw;
-    max-width: 35vw;
-    min-height: 80vh;
+    max-width: 15vw;
+    min-height: vh;
     border-radius: 6px;
+    display: grid;
 }
 
 .column-2 {
-    margin-top: 4.5em;
+    margin-top: 3vh;
+    margin-left: 20vw;
+    margin-right: 6vw;
     padding-left: 10vw;
+    display: grid;
 }
 
 .space {
@@ -152,8 +154,8 @@ p {
 .tables { 
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 30em;
-    width: 25em;
+    height: 35em;
+    width: 30em;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1.5vh;
@@ -162,7 +164,7 @@ p {
 }
 
 #myTable {
-    width: 80%; 
+    width: 100%; 
     border: 0px solid black; 
     font-size: 12px; 
   }
