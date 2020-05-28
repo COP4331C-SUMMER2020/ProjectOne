@@ -7,6 +7,10 @@
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$phoneNumber = $inData["phoneNumber"];
+	$currentID = $inData["ID"];
+	$fullName = $firstName;
+	$fullName .= " ";
+	$fullName .= $lastName;
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -24,8 +28,13 @@
 		//DISCUSS
 		//attempt to get current user's ID
 		//Current best guess
-		$currentID = $_SESSION['ID'];
-		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "' and email= '" . $email . "' and phoneNumber= '" . $phoneNumber . "' and userID= '" . $currentID . "'";
+		//$currentID = $_SESSION['ID'];
+		
+		
+		$myfile = fopen("test.txt", "w") or die("Unable to open file!");
+		fwrite($myfile, $currentID);
+		fclose($myfile);
+		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where fullName='" . $fullName . "' and email= '" . $email . "' and phoneNumber= '" . $phoneNumber . "' and userID= '" . $currentID . "'";
 		$result = $conn->query($sql);
 		// Such a contact already exists
 		if ($result->num_rows > 0)
@@ -36,10 +45,10 @@
 		else
 		{
 			// TODO: $inData arguements may need to change
-			$email = $inData["email"];
-			$firstName = $inData["firstName"];
-			$lastName = $inData["lastName"];
-			$phoneNumber = $inData["phoneNumber"];
+			//$email = $inData["email"];
+			//$firstName = $inData["firstName"];
+			//$lastName = $inData["lastName"];
+			//$phoneNumber = $inData["phoneNumber"];
 			
 			//attempt to get current user's ID
 			//Current best guess
@@ -47,7 +56,7 @@
 			
 			// TODO: does new contact's ID match user's ID?
 			// Inserting newly registered user into Users DB table
-			$sql = "INSERT into Contacts (firstName,lastName,phoneNumber,email,userID) VALUES ('" . $firstName . "','" . $lastName . "','" . $phoneNumber . "','" . $email . "','" . $currentID . "')";
+			$sql = "INSERT into Contacts (firstName,lastName,phoneNumber,email,userID,fullName) VALUES ('" . $firstName . "','" . $lastName . "','" . $phoneNumber . "','" . $email . "','" . $currentID . "','" . $fullName . "')";
 
 			// Check if insertion was unsuccessful
 			if( $result = $conn->query($sql) != TRUE )

@@ -4,8 +4,7 @@
 
 	// Named after database fields for a new contact
 	$email = "";
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
+	$fullName = $inData["fullName"];
 	$phoneNumber = "";
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
@@ -19,11 +18,12 @@
 	else
 	{
 		// Discuss
-		$currentID = $_SESSION['ID'];
+		$currentID = inData["ID"];
+		//$currentID = 8;
 		// TODO: $inData arguments may need to change, how to do partial match?
-		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName like '%" . $firstName . "%' or lastName like'%" . $lastName . "%' and userID='" . $currentID . "'";
+		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where fullName like '%" . $fullName . "%' and userID='" . $currentID . "'";
 		$result = $conn->query($sql);
-		// If found, return the contact
+		// If found, return the contact	
 		if ($result->num_rows > 0)
 		{	
 			$row = $result->fetch_assoc();
