@@ -31,9 +31,7 @@
 		//$currentID = $_SESSION['ID'];
 		
 		
-		$myfile = fopen("test.txt", "w") or die("Unable to open file!");
-		fwrite($myfile, $currentID);
-		fclose($myfile);
+		
 		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where fullName='" . $fullName . "' and email= '" . $email . "' and phoneNumber= '" . $phoneNumber . "' and userID= '" . $currentID . "'";
 		$result = $conn->query($sql);
 		// Such a contact already exists

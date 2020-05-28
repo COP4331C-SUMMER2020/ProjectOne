@@ -5,8 +5,11 @@
 	// Named after database fields for a new contact
 	$email = "";
 	$fullName = $inData["fullName"];
+	$currentID = $inData["ID"];
 	$phoneNumber = "";
-
+	$myfile = fopen("test3.txt", "w") or die("Unable to open file!");
+	fwrite($myfile, $currentID);
+	fclose($myfile);
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");
@@ -18,7 +21,7 @@
 	else
 	{
 		// Discuss
-		$currentID = inData["ID"];
+		
 		//$currentID = 8;
 		// TODO: $inData arguments may need to change, how to do partial match?
 		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where fullName like '%" . $fullName . "%' and userID='" . $currentID . "'";
