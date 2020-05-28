@@ -4,8 +4,8 @@
 
 	// Named after database fields for a new contact
 	$email = "";
-	$firstName = "";
-	$lastName = "";
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
 	$phoneNumber = "";
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
@@ -18,9 +18,10 @@
 
 	else
 	{
-		// Check whether contact is in user's contact DB table before allowing them to create new contact
+		// Discuss
+		$currentID = $_SESSION['ID'];
 		// TODO: $inData arguments may need to change, how to do partial match?
-		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName like '%" . $firstName . "%' or lastName like'%" . $lastName . "%' and userID='" . $currentID . "'";
 		$result = $conn->query($sql);
 		// If found, return the contact
 		if ($result->num_rows > 0)

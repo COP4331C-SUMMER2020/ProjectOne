@@ -3,10 +3,10 @@
 	$inData = getRequestInfo();
 
 	// Named after database fields for a new contact
-	$email = "";
-	$firstName = "";
-	$lastName = "";
-	$phoneNumber = "";
+	$email = $inData["email"];
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
+	$phoneNumber = $inData["phoneNumber"];
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -20,12 +20,17 @@
 	{
 		// Check whether contact is in user's contact DB table before allowing them to create new contact
 		// TODO: $inData arguments may need to change
-		$sql = "SELECT firstName,lastName FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
+
+		//DISCUSS
+		//attempt to get current user's ID
+		//Current best guess
+		$currentID = $_SESSION['ID'];
+		$sql = "SELECT firstName,lastName,email,phoneNumber FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "' and email= '" . $email . "' and phoneNumber= '" . $phoneNumber . "' and userID= '" . $currentID . "'";
 		$result = $conn->query($sql);
 		// Such a contact already exists
 		if ($result->num_rows > 0)
 		{	
-			returnWithError("Contact with this name already exists.");
+			returnWithError("Contact with this information already exists.");
 		}
 		//otherwise add into user's database
 		else
@@ -38,7 +43,7 @@
 			
 			//attempt to get current user's ID
 			//Current best guess
-			$currentID = $_SESSION['ID'];
+			//$currentID = $_SESSION['ID'];
 			
 			// TODO: does new contact's ID match user's ID?
 			// Inserting newly registered user into Users DB table
