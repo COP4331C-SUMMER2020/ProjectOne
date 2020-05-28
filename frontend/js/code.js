@@ -95,6 +95,8 @@ function doLogin()
 
 		userId = jsonObject.id;
 		
+		console.log("userID: " + userId);
+		
 		//if the userId is less than one, the login did not succeed
 		if( userId < 1 )
 		{
@@ -151,11 +153,11 @@ function readCookie()
 
 	if( userId < 0 )
 	{
-		window.location.href = "index.html";
+		self.location = "index.html";
 	}
 	else
 	{
-		document.getElementById("result").innerHTML = "Logged in as " + firstName + " " + lastName;
+		//document.getElementById("result").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -172,8 +174,12 @@ function doLogout()
 // Add new contact
 function addContact()
 {
+	//readCookie();
+	console.log("userID: " + userId);
+	
 	var firstName = document.getElementById("fName").value;
 	var lastName = document.getElementById("lName").value;
+	var fullName = firstName + " " + lastName;
 	var phone = document.getElementById("phone").value;
 	var email = document.getElementById("email").value;
 
@@ -182,9 +188,9 @@ function addContact()
 		return false; 
 	}
 
-	console.log("fname, lastname, phone, email" + firstName + " " + lastName + " " + phone + " " + email)
+	console.log("firstname, lastname, phone, email" + firstName + " " + lastName + " " + phone + " " + email)
 		
-	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
 
 	var url = urlBase + '/NewContact.' + extension;
