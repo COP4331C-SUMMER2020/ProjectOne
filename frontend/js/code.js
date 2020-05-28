@@ -237,17 +237,14 @@ function searchContact()
 	console.log(searchInput)
 	
 	// Testing search, will implement search text boxes
-	var firstName = "joe"
-	var lastName = "mama"
-	var phone = ""
-	var email = ""
+	var fullName = document.getElementById("searchInput").value;
 
 
 	document.getElementById("searchResult").innerHTML = "";
 	
 	var searchList = "";
 	
-	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
+	var jsonPayload = '{"fullName" : "' + fullName + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
 	var url = urlBase + '/SearchContact.' + extension;
 	
