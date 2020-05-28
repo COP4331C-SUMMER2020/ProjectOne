@@ -182,7 +182,7 @@ function addContact()
 		return false; 
 	}
 
-	console.log("fname, lastname, phone, email" + fName + " " + lastName + " " + phone + " " + email)
+	console.log("fname, lastname, phone, email" + firstName + " " + lastName + " " + phone + " " + email)
 		
 	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phone" : "' + phone + '", "email" : "' + email + '"}';
 	console.log(jsonPayload)
