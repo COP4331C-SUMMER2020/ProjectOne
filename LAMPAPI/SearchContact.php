@@ -7,6 +7,8 @@
 	$fullName = $inData["fullName"];
 	$currentID = $inData["ID"];
 	$phoneNumber = "";
+	$searchResults = "";
+	$numResults = 0;
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");
@@ -26,12 +28,20 @@
 		// If found, return the contact	
 		if ($result->num_rows > 0)
 		{	
-			$row = $result->fetch_assoc();
-			$firstName = $row["firstName"];
-			$lastName = $row["lastName"];
-			$email = $row["email"];
-			$phoneNumber = $row["phoneNumber"];
-			returnWithInfo($firstName, $lastName, $email, $phoneNumber);
+			while($row = $result->fetch_assoc())
+			{
+				if ($numResults > 0)
+				{
+					$searchResults .= ",";
+				}
+				$numResults++;
+				$searchResults .= '"' . $row["firstName"] . '",';
+				$searchResults .= '"' . $row["lastName"] . '",';
+				$searchResults .= '"' . $row["email"] . '",';
+				$searchResults .= '"' . $row["phoneNumber"] . '"';
+			}
+			
+			returnWithInfo($searchResults);
 		}
 		//otherwise return an error that none were found
 		else
@@ -61,8 +71,8 @@
 		sendResultInfoAsJson( $retValue );
 	}
 
-	function returnWithInfo($firstName, $lastName, $email, $phoneNumber)
+	function returnWithInfo($searchResults)
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":"' . $email . '","phoneNumber":"' . $phoneNumber . '"}';
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}

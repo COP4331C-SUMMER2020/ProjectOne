@@ -8,7 +8,8 @@
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$phoneNumber = $inData["phoneNumber"];
-	$userID = 0;
+	$contactID = 0;
+	$currentID = $inData["ID"];
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -38,7 +39,7 @@
 
 		// TODO: variables may need to change
 		// Inserting newly registered user into Users DB table
-		$sql = "UPDATE Contacts SET firstname = '" . $firstName . "', lastName = '" . $lastName . "', phoneNumber = '" . $phoneNumber . "', email = '" . $email . "' WHERE userID = '". $userID ."'";
+		$sql = "UPDATE Contacts SET firstname = '" . $firstName . "', lastName = '" . $lastName . "', phoneNumber = '" . $phoneNumber . "', email = '" . $email . "' WHERE contactID = '". $contactID ."'";
 
 		// Check if update was unsuccessful
 		if( $result = $conn->query($sql) != TRUE )
