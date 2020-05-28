@@ -7,9 +7,6 @@
 	$fullName = $inData["fullName"];
 	$currentID = $inData["ID"];
 	$phoneNumber = "";
-	$myfile = fopen("test3.txt", "w") or die("Unable to open file!");
-	fwrite($myfile, $currentID);
-	fclose($myfile);
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
 	$conn = new mysqli("localhost", "elevenbr_eleventy", "Group11FTW!", "elevenbr_projectOne");

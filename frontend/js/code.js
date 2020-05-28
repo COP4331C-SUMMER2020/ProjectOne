@@ -249,7 +249,7 @@ function searchContact()
 	var url = urlBase + '/SearchContact.' + extension;
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try
 	{
