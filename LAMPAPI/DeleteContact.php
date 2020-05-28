@@ -1,11 +1,7 @@
 <?php
 
 	$inData = getRequestInfo();
-
-	// Named after database fields for a new contact
-	$firstName = "";
-	$lastName = "";
-	$userID = 0;
+	$contactID = $inData["contactID"];
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -18,23 +14,7 @@
 	else 
 	{	
 
-
-		//Not searching correctly(????) put if hardcode the ID it will delete correctly
-		$sql = "SELECT userID FROM Contacts where firstName='" . $inData["firstName"] . "' and lastName='" . $inData["lastName"] . "'";
-		$result = $conn->query($sql);
-
-		if ($result->num_rows > 0)
-		{	
-			$row = $result->fetch_assoc();
-			$userID = $row["userID"];
-		}
-
-
-
-
-
-
-		$sql = "DELETE FROM Contacts WHERE userID = '" . $userID . "'";
+		$sql = "DELETE FROM Contacts WHERE contactID = '" . $contactID . "'";
 
 		// Check if update was unsuccessful
 		if( $result = $conn->query($sql) != TRUE )
