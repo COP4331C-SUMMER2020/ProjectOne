@@ -263,6 +263,12 @@ function searchContact()
 				document.getElementById("searchResult").innerHTML = "User(s) have been retrieved";
 
 				var jsonObject = JSON.parse( xhr.responseText );
+
+				if (jsonObject.error){
+					document.getElementById("searchResult").innerHTML = "Contact not found";
+					return false;
+				}
+
 				console.log("RETURNED JSON OBJECT FROM API")
 				console.log(jsonObject);
 
@@ -279,6 +285,7 @@ function searchContact()
 
 				for( var i=0; i < jsonObject.results.length; i+=4)
 				{
+					//Make these global 
 					var firstName = jsonObject.results[i];
 					var lastName = jsonObject.results[i+1];
 					var email = jsonObject.results[i+2];
@@ -289,7 +296,7 @@ function searchContact()
 					text += "<td>" + lastName + "</td>";
 					text += "<td>" + email + "</td>";
 					text += "<td>" + phone + "</td>";
-					text += "<td> <button class = \"searchButton\" onClick=\"editContact()\"> Edit </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"editContact(firstName, lastName, email, phone)\"> Edit </button> </td>"
 					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact()\"> Delete </button> </td>"
 					text += "</tr>"
 				}
@@ -309,15 +316,81 @@ function searchContact()
 }
 
 
+function editContact(args1, args2, args3, args4) {
+	document.getElementById("userInfo").style.display = "block";
 
-function editContact() {
+	var firstName = args1; 
+	var lastName = args2; 
+	var email = args3; 
+	var phone = args4; 
 
-	//id for output is edit
-	console.log("edit contact button is working");
+	//pass in variables 
+	doEdit();
 
+}
+
+// function for the textbox
+function doEdit(){
+	//get user ID 
+
+	document.getElementById("fNameEdit").style.display = fNameEdit;
+	document.getElementById("lNameEdit").style.display = lNameEdit;
+	document.getElementById("emailEdit").style.display = emailEdit;
+	document.getElementById("phonEdit").style.display = phonEdit;
+
+	//PHP Here
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
+	console.log(jsonPayload)
+
+	var url = urlBase + '/NewContact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("fName").value = "";
+				document.getElementById("lName").value = "";
+				document.getElementById("phone").value = "";
+				document.getElementById("email").value = "";
+
+				document.getElementById("addResult").innerHTML = "Contact has been added";
+
+			}
+		}
+
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("fName").value = "";
+		document.getElementById("lName").value = "";
+		document.getElementById("phone").value = "";
+		document.getElementById("email").value = "";
+
+		document.getElementById("addResult").innerHTML = err.message;
+	}
+	
+	// END PHP
+
+	document.getElementById("userInfo").style.display = "none";
 }
 
 function deleteContact() {
 	console.log("delete contact button is working");
+}
 
+
+// Effects 
+function openForm() {
+	document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm(){
+	document.getElementById("myForm").style.display = "none";
 }
