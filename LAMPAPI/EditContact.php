@@ -8,8 +8,11 @@
 	$firstName = $inData["firstName"];
 	$lastName = $inData["lastName"];
 	$phoneNumber = $inData["phoneNumber"];
-	$contactID = 0;
+	$contactID = $inData["contactID"];
 	$currentID = $inData["ID"];
+	$fullName = $firstName;
+	$fullName .= " ";
+	$fullName .= $lastName;
 
 	//$conn = new mysqli("localhost", "elevenbr_eleventy", "domain password", "database name");
 	// connect with server
@@ -21,25 +24,10 @@
 
 	else 
 	{	
-		$sql = "SELECT userID,email,phoneNumber,firstName,lastName FROM Contacts where firstName='" . $firstName . "' and lastName='" . $lastName . "'";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0)
-		{	
-			//This line pulls all info from contact entry
-			$row = $result->fetch_assoc();
-			$userID = $row["userID"];
-		}
-
-		//This would now be on 'edit' page
-		$inData = getRequestInfo();
-		$email = $inData["email"];
-		$firstName = $inData["firstName"];
-		$lastName = $inData["lastName"];
-		$phoneNumber = $inData["phoneNumber"];
-
+		
 		// TODO: variables may need to change
 		// Inserting newly registered user into Users DB table
-		$sql = "UPDATE Contacts SET firstname = '" . $firstName . "', lastName = '" . $lastName . "', phoneNumber = '" . $phoneNumber . "', email = '" . $email . "' WHERE contactID = '". $contactID ."'";
+		$sql = "UPDATE Contacts SET firstname = '" . $firstName . "', lastName = '" . $lastName . "', phoneNumber = '" . $phoneNumber . "', email = '" . $email . "', fullName = '" . $fullName . "' where contactID = '" . $contactID . "'";
 
 		// Check if update was unsuccessful
 		if( $result = $conn->query($sql) != TRUE )
@@ -66,7 +54,7 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","email":' . $email . ',"phoneNumber":' . $phoneNumber . ',"error":""}';
+		$retValue = '{"error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
