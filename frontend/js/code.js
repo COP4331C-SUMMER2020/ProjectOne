@@ -185,6 +185,7 @@ function addContact()
 
 	if(firstName === "" && lastName === "" && phone === "" && email === "")
 	{
+		document.getElementById("addResult").innerHTML = "Enter contact information for at least one field";
 		return false; 
 	}
 
@@ -232,57 +233,91 @@ function addContact()
 
 // Search for contact
 function searchContact()
-{
-	// var searchInput = document.getElementById("searchInput").value;
+{	
+	var searchInput = document.getElementById("searchInput").value;
+	var searchList = "";
+
 	console.log(searchInput)
+
+	if(searchInput == ""){
+		document.getElementById("searchResult").innerHTML = "Please add information";
+		return;
+	}
 	
-	// Testing search, will implement search text boxes
-	var fullName = document.getElementById("searchInput").value;
-
-
 	document.getElementById("searchResult").innerHTML = "";
 	
-	var searchList = "";
-	
-	var jsonPayload = '{"fullName" : "' + fullName + '", "ID" : "' + userId + '"}';
+	var jsonPayload = '{"fullName" : "' + searchInput + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
+
 	var url = urlBase + '/SearchContact.' + extension;
-	
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
 	try
 	{
 		xhr.onreadystatechange = function() 
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("resultLOG").innerHTML = "User(s) have been retrieved";
-				// XHR.responseText is giving off an unexpected token error. is that front end or php side?
-				console.log(xhr.responseText)
+				document.getElementById("searchResult").innerHTML = "User(s) have been retrieved";
 
 				var jsonObject = JSON.parse( xhr.responseText );
-				console.log(jsonObject)
+				console.log("RETURNED JSON OBJECT FROM API")
+				console.log(jsonObject);
 
-				
-				// for( var i=0; i<jsonObject.results.length; i++ )
-				// {
-				// 	searchList += jsonObject.results[i];
-				// 	if( i < jsonObject.results.length - 1 )
-				// 	{
-				// 		searchList += "<br />\r\n";
-				// 	}
-				// }
-				document.getElementById("searchResult").innerHTML = searchList;
+				//Build table 
+				var text = "";
+				text += " <table> <tr class= \"header\">";
 
-				// document.getElementsByTagName("p")[0].innerHTML = searchList;
+				text += "<th style=\"width:25%;\"> First Name</th>";
+				text += "<th style=\"width:25%;\"> Last Name</th>";
+				text += "<th style=\"width:30%;\"> Email</th>";
+				text += "<th style=\"width:30%;\"> Phone</th>";
+				text += "<th style=\"width:30%;\" colspan=\"2\"></th>";
+				text += "</tr>";
+
+				for( var i=0; i < jsonObject.results.length; i+=4)
+				{
+					var firstName = jsonObject.results[i];
+					var lastName = jsonObject.results[i+1];
+					var email = jsonObject.results[i+2];
+					var phone = jsonObject.results[i+3];
+					
+					text += "<tr>";
+					text += "<td>" + firstName + "</td>";
+					text += "<td>" + lastName + "</td>";
+					text += "<td>" + email + "</td>";
+					text += "<td>" + phone + "</td>";
+					text += "<td> <button class = \"searchButton\" onClick=\"editContact()\"> Edit </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact()\"> Delete </button> </td>"
+					text += "</tr>"
+				}
+
+				text += "</table>"
+
+				document.getElementById("myTable").innerHTML = text;
 			}
 		}
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("resultLOG").innerHTML = err.message;
+		document.getElementById("searchResult").innerHTML = err.message;
 	}
 	
+}
+
+
+
+function editContact() {
+
+	//id for output is edit
+	console.log("edit contact button is working");
+
+}
+
+function deleteContact() {
+	console.log("delete contact button is working");
+
 }

@@ -73,10 +73,13 @@ p {
 #background {
     margin: 0;
     background: url('/img/searchpageimgpurple.png');
+    /* background: url('/frontend/img/searchpageimgpurple.png'); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: right;
-    background-size: 37em 100%;
+    background-size: 45% 100%;
+    object-fit: scale-down;
+    display: grid;
 }
 
 .logout {
@@ -114,9 +117,8 @@ p {
 }
 
 .column-1{
-    margin-top: 2vh;
-    margin-left: 2vw;
-    margin-bottom: 7vh;
+    margin-left: 1vw;
+    margin-bottom: 2vh;
     padding-top: 2vh;
     padding-left: 2vw;
     max-width: 15vw;
@@ -127,8 +129,8 @@ p {
 
 .column-2 {
     margin-top: 3vh;
-    margin-left: 20vw;
-    margin-right: 6vw;
+    margin-left: 28vw;
+    margin-right: 3vw;
     padding-left: 10vw;
     display: grid;
 }
@@ -155,7 +157,7 @@ p {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     height: 35em;
-    width: 30em;
+    width: 39em;
     margin-left: auto;
     margin-right: auto;
     padding-top: 1.5vh;
@@ -173,6 +175,7 @@ p {
     background-color: #ffffff;
     text-align: left;
     padding: 5px; 
+    white-space: nowrap;
 }
   
 #myTable tr {
@@ -199,6 +202,18 @@ input {
     padding: 0.8em;
     padding-left: 1.5em;
     padding-right: 1.5em;
+    border: 1px;
+    border-radius: 5px;
+}
+
+.searchButton {
+    background-color: rgb(71, 206, 144);
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--clr-light);
+    padding: 0.5em;
+    padding-left: 0.9em;
+    padding-right: 0.9em;
     border: 1px;
     border-radius: 5px;
 }
