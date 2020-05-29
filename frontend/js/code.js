@@ -409,8 +409,79 @@ function doEdit(args1){
 	document.getElementById("userInfo").style.display = "none";
 }
 
-function deleteContact() {
-	console.log("delete contact button is working");
+function deleteContact(args1, args2, args3, args4) {
+	var firstName = args1; 
+	var lastName = args2; 
+	var email = args3; 
+	var phone = args4; 
+	
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
+	console.log(jsonPayload)
+
+	var url = urlBase + '/retrieveContactID.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.send(jsonPayload);
+
+		var jsonObject = JSON.parse( xhr.responseText );
+		
+		console.log(jsonObject);
+		if (jsonObject.error){
+			document.getElementById("searchResult").innerHTML = "Error retrieving ContactID";
+			return false;
+		}
+		
+		//pass in variables 
+		doDelete(jsonObject.contactID);
+	}
+	catch(err)
+	{
+		document.getElementById("searchResult").innerHTML = err.message;
+	}
+}
+
+function doDelete(args1) {
+	var contactID = args1; 
+	
+	var jsonPayload = '{"contactID" : "' + contactID + '"}';
+	console.log(jsonPayload)
+
+	var url = urlBase + '/DeleteContact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				document.getElementById("searchResult").innerHTML = "Contact has been deleted";
+			}
+		}
+		
+		xhr.send(jsonPayload);
+
+		var jsonObject = JSON.parse( xhr.responseText );
+		
+		console.log(jsonObject);
+		if (jsonObject.error){
+			document.getElementById("searchResult").innerHTML = "Error deleting contact";
+			return false;
+		}
+		
+	}
+	catch(err)
+	{
+		document.getElementById("searchResult").innerHTML = err.message;
+	}
 }
 
 
