@@ -291,13 +291,15 @@ function searchContact()
 					var email = jsonObject.results[i+2];
 					var phone = jsonObject.results[i+3];
 					
+					console.log("<td> <button class=\"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Edit </button> </td>");
+					
 					text += "<tr>";
 					text += "<td>" + firstName + "</td>";
 					text += "<td>" + lastName + "</td>";
 					text += "<td>" + email + "</td>";
 					text += "<td>" + phone + "</td>";
-					text += "<td> <button class = \"searchButton\" onClick=\"editContact(firstName, lastName, email, phone)\"> Edit </button> </td>"
-					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact()\"> Delete </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\')\"> Edit </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\')\"> Delete </button> </td>"
 					text += "</tr>"
 				}
 
@@ -323,23 +325,49 @@ function editContact(args1, args2, args3, args4) {
 	var lastName = args2; 
 	var email = args3; 
 	var phone = args4; 
+	
+	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
+	console.log(jsonPayload)
 
-	//pass in variables 
-	doEdit();
+	var url = urlBase + '/retrieveContactID.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		xhr.send(jsonPayload);
+
+		var jsonObject = JSON.parse( xhr.responseText );
+		
+		console.log(jsonObject);
+		if (jsonObject.error){
+			document.getElementById("editResult").innerHTML = "Error retrieving ContactID";
+			return false;
+		}
+		
+		//pass in variables 
+		doEdit(jsonObject.contactID);
+	}
+	catch(err)
+	{
+		document.getElementById("editResult").innerHTML = err.message;
+	}
 
 }
 
 // function for the textbox
-function doEdit(){
+function doEdit(args1){
 	//get user ID 
 
 	document.getElementById("fNameEdit").style.display = fNameEdit;
 	document.getElementById("lNameEdit").style.display = lNameEdit;
 	document.getElementById("emailEdit").style.display = emailEdit;
-	document.getElementById("phonEdit").style.display = phonEdit;
+	document.getElementById("phoneEdit").style.display = phoneEdit;
 
 	//PHP Here
-	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
+	/*var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
 
 	var url = urlBase + '/NewContact.' + extension;
@@ -374,7 +402,7 @@ function doEdit(){
 		document.getElementById("email").value = "";
 
 		document.getElementById("addResult").innerHTML = err.message;
-	}
+	}*/
 	
 	// END PHP
 
