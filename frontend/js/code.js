@@ -298,8 +298,8 @@ function searchContact()
 					text += "<td>" + lastName + "</td>";
 					text += "<td>" + email + "</td>";
 					text += "<td>" + phone + "</td>";
-					text += "<td> <button class = \"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\')\"> Edit </button> </td>"
-					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\')\"> Delete </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Edit </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Delete </button> </td>"
 					text += "</tr>"
 				}
 
@@ -326,6 +326,11 @@ function editContact(args1, args2, args3, args4) {
 	var email = args3; 
 	var phone = args4; 
 	
+	document.getElementById("fNameEdit").value = firstName;
+	document.getElementById("lNameEdit").value = lastName;
+	document.getElementById("emailEdit").value = email;
+	document.getElementById("phoneEdit").value = phone;
+	
 	var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
 
@@ -348,7 +353,8 @@ function editContact(args1, args2, args3, args4) {
 		}
 		
 		//pass in variables 
-		doEdit(jsonObject.contactID);
+		document.getElementById("editButton").onclick = "doEdit(" + jsonObject.contactID + ");";
+		//doEdit(jsonObject.contactID);
 	}
 	catch(err)
 	{
@@ -360,20 +366,26 @@ function editContact(args1, args2, args3, args4) {
 // function for the textbox
 function doEdit(args1){
 	//get user ID 
-
+	
 	document.getElementById("fNameEdit").style.display = fNameEdit;
 	document.getElementById("lNameEdit").style.display = lNameEdit;
 	document.getElementById("emailEdit").style.display = emailEdit;
 	document.getElementById("phoneEdit").style.display = phoneEdit;
 
+	var firstName = document.getElementById("fNameEdit").value;
+	var lastName = document.getElementById("lNameEdit").value;
+	var email = document.getElementById("emailEdit").value;
+	var phone = document.getElementById("phoneEdit").value;
+	
 	//PHP Here
-	/*var jsonPayload = '{"firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
+	contactID = args1;
+	var jsonPayload = '{"contactID" : "' + contactID + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '", "phoneNumber" : "' + phone + '", "email" : "' + email + '", "ID" : "' + userId + '"}';
 	console.log(jsonPayload)
 
-	var url = urlBase + '/NewContact.' + extension;
+	var url = urlBase + '/EditContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
+	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 	try
@@ -382,13 +394,7 @@ function doEdit(args1){
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("fName").value = "";
-				document.getElementById("lName").value = "";
-				document.getElementById("phone").value = "";
-				document.getElementById("email").value = "";
-
-				document.getElementById("addResult").innerHTML = "Contact has been added";
-
+				document.getElementById("searchResult").innerHTML = "Contact has been changed";
 			}
 		}
 
@@ -396,13 +402,8 @@ function doEdit(args1){
 	}
 	catch(err)
 	{
-		document.getElementById("fName").value = "";
-		document.getElementById("lName").value = "";
-		document.getElementById("phone").value = "";
-		document.getElementById("email").value = "";
-
-		document.getElementById("addResult").innerHTML = err.message;
-	}*/
+		document.getElementById("searchResult").innerHTML = err.message;
+	}
 	
 	// END PHP
 
