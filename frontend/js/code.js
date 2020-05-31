@@ -98,9 +98,9 @@ function doLogin()
 		console.log("userID: " + userId);
 		
 		//if the userId is less than one, the login did not succeed
-		if( userId < 1 )
+		if( jsonObject.error )
 		{
-			document.getElementById("result1").innerHTML = "User/Password combination incorrect";
+			document.getElementById("result1").innerHTML = jsonObject.error;
 			return;
 		}
 
@@ -293,13 +293,13 @@ function searchContact()
 					
 					console.log("<td> <button class=\"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Edit </button> </td>");
 					
-					text += "<tr>";
+					text += "<tr id=" + i + ">";
 					text += "<td>" + firstName + "</td>";
 					text += "<td>" + lastName + "</td>";
 					text += "<td>" + email + "</td>";
 					text += "<td>" + phone + "</td>";
 					text += "<td> <button class = \"searchButton\" onClick=\"editContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Edit </button> </td>"
-					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\');\"> Delete </button> </td>"
+					text += "<td> <button class = \"searchButton\" onClick=\"deleteContact(\'" + firstName + "\',\'" + lastName + "\',\'" + email + "\',\'" + phone + "\',\'" + i + "\');\"> Delete </button> </td>"
 					text += "</tr>"
 				}
 
@@ -357,7 +357,7 @@ function editContact(args1, args2, args3, args4) {
 		}
 		
 		//pass in variables 
-		document.getElementById("editButton").onclick = "doEdit(" + jsonObject.contactID + ");";
+		document.getElementById("editButton").setAttribute( "onClick", "doEdit(" + jsonObject.contactID + ");");
 		//doEdit(jsonObject.contactID);
 	}
 	catch(err)
@@ -415,7 +415,7 @@ function doEdit(args1){
 	document.getElementById("userInfo").style.display = "none";
 }
 
-function deleteContact(args1, args2, args3, args4) {
+function deleteContact(args1, args2, args3, args4, args5) {
 	var firstName = args1; 
 	var lastName = args2; 
 	var email = args3; 
@@ -445,6 +445,8 @@ function deleteContact(args1, args2, args3, args4) {
 		
 		//pass in variables 
 		doDelete(jsonObject.contactID);
+		var e = document.getElementById(args5);
+		e.parentNode.removeChild(e);
 	}
 	catch(err)
 	{
