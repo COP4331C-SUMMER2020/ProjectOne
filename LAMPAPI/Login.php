@@ -26,16 +26,16 @@
 			$id = $row["ID"];
 			$hashedPassword = $row["password"];
 		}
-		else
+		/*else
 		{
 			returnWithError( "No Records Found" );
-		}
+		}*/
 		//check their password versus it's hash
 		if (password_verify($password, $hashedPassword))
 			returnWithInfo($firstName, $lastName, $id );
 		else
 		{
-			returnWithError( "Passwords don't match" );
+			returnWithError( "Incorrect Username/Password Combination" );
 		}
 		$conn->close();
 	}

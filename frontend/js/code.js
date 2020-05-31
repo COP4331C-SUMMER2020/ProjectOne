@@ -238,11 +238,6 @@ function searchContact()
 	var searchList = "";
 
 	console.log(searchInput)
-
-	if(searchInput == ""){
-		document.getElementById("searchResult").innerHTML = "Please add information";
-		return;
-	}
 	
 	document.getElementById("searchResult").innerHTML = "";
 	
