@@ -320,11 +320,15 @@ function searchContact()
 
 function editContact(args1, args2, args3, args4) {
 	document.getElementById("userInfo").style.display = "block";
+	document.getElementById("myForm").style.display = "none";
+
 
 	var firstName = args1; 
 	var lastName = args2; 
 	var email = args3; 
 	var phone = args4; 
+
+	console.log("EDIT CONTACT FUNCTION");
 	
 	document.getElementById("fNameEdit").value = firstName;
 	document.getElementById("lNameEdit").value = lastName;
@@ -366,7 +370,9 @@ function editContact(args1, args2, args3, args4) {
 // function for the textbox
 function doEdit(args1){
 	//get user ID 
-	
+
+	console.log("doEdit function entered");
+
 	document.getElementById("fNameEdit").style.display = fNameEdit;
 	document.getElementById("lNameEdit").style.display = lNameEdit;
 	document.getElementById("emailEdit").style.display = emailEdit;
@@ -406,7 +412,6 @@ function doEdit(args1){
 	}
 	
 	// END PHP
-
 	document.getElementById("userInfo").style.display = "none";
 }
 
@@ -431,7 +436,8 @@ function deleteContact(args1, args2, args3, args4) {
 
 		var jsonObject = JSON.parse( xhr.responseText );
 		
-		console.log(jsonObject);
+		console.log(jsonObject.error);
+
 		if (jsonObject.error){
 			document.getElementById("searchResult").innerHTML = "Error retrieving ContactID";
 			return false;

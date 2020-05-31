@@ -95,11 +95,11 @@ p {
 .form1 {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 17em;
+    height: 22em;
     width: 25em;
     margin-left: auto;
-    margin-right: auto;
-    padding-top: 1.5vh;
+    margin-right: 11vw;
+    padding-top: 2vh;
     padding-left: 1vw;
     padding-right: 1vw;
     display: none;
@@ -108,17 +108,17 @@ p {
 .user {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    height: 18em;
+    height: 22em;
     width: 25em;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 11vw;
     padding-top: 1.5vh;
     padding-left: 1vw;
     padding-right: 1vw;
     display: none;
 }
 
-.column-1{
+/* .column-1{
     margin-left: 1vw;
     margin-bottom: 2vh;
     padding-top: 2vh;
@@ -135,7 +135,7 @@ p {
     margin-right: 3vw;
     padding-left: 10vw;
     display: grid;
-}
+} */
 
 .space {
     padding-top: 1.0vh;
@@ -159,8 +159,10 @@ p {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     height: 35em;
-    width: 55em;
-    margin-left: auto;
+    width: 45em;
+    margin-top: 1vh;
+    margin-bottom: 12vw;
+    margin-left: 3vw;
     margin-right: auto;
     padding-top: 1.5vh;
     padding-left: 2vw;

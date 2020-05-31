@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="./css/contactStyle.css">
 
     <script src="./js/code.js"></script>
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function()
-	{
-		readCookie();
-	}, false);
-	</script>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function()
+    {
+      readCookie();
+    }, false);
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Group 11's Contact Manager</title>
   </head>
@@ -36,7 +36,7 @@
       <!-- User Table Section -->
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md column-1"> 
+          <!-- <div class="col-md column-1">  -->
             <div class ="tables" style="overflow:auto;">
               <h2>Contacts</h2>
               <div class ="space2"></div>
@@ -50,17 +50,18 @@
               <p id="searchResult"> </p>
               <span id="myTable" class = "myTable">
               </span>
-            </div>
+            <!-- </div> -->
           </div>
 
           <!-- Add User Section -->
-          <div class="col-md column-2">
+          <!-- <div class="col-md column-2"> -->
             <!-- Edit User Info -->
             <div class="user" id="userInfo">
               <form action="" method="">
                 <h2>Edit Username</h2>
-                <div class = "space1"></div>
+                <div class = "space1"></div> 
                 <input id ="fNameEdit" type="text" placeholder="First Name" name="fName">
+                <div class = "space"></div>
                 <input id ="lNameEdit" type="text" placeholder="Last Name" name="lName">
                 <div class = "space"></div>
                 <input id ="phoneEdit" type="text" placeholder="Phone" name="phone">
@@ -68,7 +69,8 @@
                 <input id ="emailEdit" type="text" placeholder="Email" name="email">
                 <div class = "space"></div>
                 <p id="editResult" class="addSection"> </p>
-                <button type="button" class="button" id="editButton" onclick="" type="submit"> Edit </button>
+                <button type="button" class="button" id="editButton" onclick="doEdit()" type="submit"> Edit </button>
+                <button class="button" onclick="closeForm()"> Cancel </button>
               </form>
             </div>
             <div class = "space"></div>
@@ -80,6 +82,7 @@
                 <h2>Add a contact</h2>
                 <div class = "space1"></div>
                 <input id ="fName" type="text" placeholder="First Name" name="fName">
+                <div class = "space"></div>
                 <input id ="lName" type="text" placeholder="Last Name" name="lName">
                 <div class = "space"></div>
                 <input id ="phone" type="text" placeholder="Phone" name="phone">
@@ -91,7 +94,7 @@
                 <button class="button" onclick="closeForm()"> Cancel </button>
               </form>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
     </body>

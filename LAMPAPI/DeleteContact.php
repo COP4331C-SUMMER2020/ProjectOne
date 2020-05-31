@@ -23,7 +23,7 @@
 		}
 		else
 		{
-			returnWithError("Delete was successful.");
+			returnWithInfo("Delete was successful.");
 		}
 		$conn->close();
 	}
@@ -43,6 +43,12 @@
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	function returnWithInfo( $err )
+	{
+		$retValue = '{"success":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 
